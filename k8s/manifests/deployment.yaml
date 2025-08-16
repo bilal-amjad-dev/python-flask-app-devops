@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-flask-app-devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-flask-app-devops
+  template:
+    metadata:
+      labels:
+        app: python-flask-app-devops
+    spec:
+      containers:
+        - name: python-flask-app-devops
+          image: YOUR-DOCKERHUB-USERNAME/python-flask-app-devops:BUILD_NUMBER
+          ports:
+            - containerPort: 5000
+
+# Note: Jenkins will replace BUILD_NUMBER dynamically.
