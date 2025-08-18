@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: python-flask-app-devops
-          image: YOUR-DOCKERHUB-USERNAME/python-flask-app-devops:BUILD_NUMBER
+          image: YOUR-DOCKERHUB-USERNAME/python-flask-app-devops:BUILD_NUMBER       // 👈 PASTE YOUR DOCKERHUB-USERNAME HERE
           ports:
             - containerPort: 5000
 
