@@ -4,14 +4,14 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS = 'dockerhub'   // Jenkins Credentials ID for DockerHub
     GITHUB_CREDENTIALS = 'github'         // Jenkins Credentials ID for GitHub
-    DOCKER_IMAGE = 'YOUR-DOCKERHUB-USERNAME/python-flask-app-devops'
+    DOCKER_IMAGE = 'YOUR-DOCKERHUB-USERNAME/python-flask-app-devops'                // 👈 PASTE YOUR DOCKERHUB-USERNAME HERE
     DEPLOYMENT_MANIFEST = 'k8s/manifests/deployment.yaml'
   }
 
   stages {
     stage('Checkout code') {
       steps {
-        git credentialsId: "${GITHUB_CREDENTIALS}", url: 'https://github.com/YOUR-GITHUB-USERNAME/python-flask-app-devops.git'
+        git credentialsId: "${GITHUB_CREDENTIALS}", url: 'https://github.com/YOUR-GITHUB-USERNAME/python-flask-app-devops.git'     // 👈 PASTE YOUR GITHUB-USERNAME HERE
       }
     }
 
@@ -39,8 +39,8 @@ pipeline {
         script {
           sh """
             sed -i 's|image:.*|image: ${DOCKER_IMAGE}:${env.BUILD_NUMBER}|' ${DEPLOYMENT_MANIFEST}
-            git config user.email "jenkins@example.com"
-            git config user.name "Jenkins"
+            git config user.email "example@example.com"                                               // 👈 PASTE YOUR EMAIL HERE 
+            git config user.name "GITHUB-USERNAME"                                                            // 👈 PASTE YOUR GITHUB-USERNAME HERE
             git add ${DEPLOYMENT_MANIFEST}
             git commit -m "Update image tag to ${env.BUILD_NUMBER} via Jenkins"
             git push origin main
@@ -52,3 +52,4 @@ pipeline {
 }
 // Note: Replace YOUR-DOCKERHUB-USERNAME and YOUR-GITHUB-USERNAME with your actual DockerHub and GitHub usernames.
 // Note: Add your original email and name in the git config commands. 
+
